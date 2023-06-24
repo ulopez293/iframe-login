@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document 2</title>
+</head>
+<body>
+    <h1>server 2</h1>
+    <p>datos:
+        <span id="mensaje"></span>
+    </p>
+    <script>
+        // Escucha el evento 'message' para recibir mensajes del padre
+        window.addEventListener('message', (event) => {
+          // Verifica el origen del mensaje para mayor seguridad
+          if (event.origin !== 'http://localhost:3000') {
+            return;
+          }
+    
+          // Maneja el mensaje recibido del padre
+          console.log('Mensaje recibido:', event.data)
+          document.getElementById('mensaje').textContent = event.data
+    
+          // Envía una respuesta al padre
+          event.source.postMessage('Hola desde Página 2!', event.origin)
+        })
+      </script>
+</body>
+</html>

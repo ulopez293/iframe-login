@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document 1</title>
+</head>
+<body>
+    <h1>server 1</h1>
+    <input id="user" type="text" placeholder="usuario"><br><br>
+    <input id="password" type="password" placeholder="contrasenia"><br><br>
+    <button id="enviar">enviar datos al frame</button><br><br>
+    <iframe id="server2Frame" src="http://localhost:4000/"></iframe>
+    <script>
+        // Obtén una referencia al iframe
+        const server2Frame = document.getElementById('server2Frame')
+    
+        // Escucha el evento 'message' para recibir mensajes del iframe
+        window.addEventListener('message', (event) => {
+          // Verifica el origen del mensaje para mayor seguridad
+          if (event.origin !== 'http://localhost:4000') {
+            return;
+          }
+    
+          // Maneja el mensaje recibido desde el iframe
+          console.log('Mensaje recibido:', event.data)
+        })
+    
+        // Envía un mensaje al iframe
+        function sendMessageToServer2(message) {
+          server2Frame.contentWindow.postMessage(message, 'http://localhost:4000')
+        }
+    
+        // Ejemplo de enviar un mensaje al iframe
+        document.getElementById('enviar').addEventListener(`click`, () => 
+        sendMessageToServer2(`usuario: ${document.getElementById('user').value} | password: ${document.getElementById('password').value}`)
+        )
+      </script>
+</body>
+</html>
