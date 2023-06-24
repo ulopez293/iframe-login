@@ -2,16 +2,17 @@
 
 Para instalar las dependencias, ejecuta el siguiente comando:
 
-```shell
+```
 npm install
+```
 
 ## Ejecucion
 
 Para iniciar el proyecto, utiliza el siguiente comando:
 
-```shell
+```
 npm start
-
+```
 
 Esto ejecutará el proyecto y pondrá en marcha los servidores.
 
